@@ -1,0 +1,140 @@
+{% extends "main/base.html" %}
+{% block extrajs %}
+
+{% endblock %}
+
+{% block content %}
+<div id="head">
+    <img src="/static/template/img/logos/main_logo.png" alt="Price Guru"/><br/>
+    <img src="/static/template/img/stay.png" alt="Stay always updated!" style="margin-top: 135px;"/>
+
+    <div class="form">
+        <form action="{% url 'user:login' %}" class="form form-inline" method="post">{% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="username" id="id_username" class="form-control" placeholder="Login" />
+            </div>
+            <div class="form-group">
+                <input type="password" name="password"  id="id_password" class="form-control" placeholder="Password" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="LOGIN" class="btn"/>
+            </div>
+        </form>
+        <div class="btns">
+            <a href="{% url 'social:begin'  backend="vk-oauth2"%}" title="Login via VK">
+            <img src="/static/template/img/cab/social_big/vk.png" alt="Login via VK"/>
+            </a>
+            <a href="{% url 'social:begin' backend="google-oauth2" %}" title="Login via Google+">
+            <img src="/static/template/img/cab/social_big/g+.png" alt="Login via Google+" />
+            </a>
+            <a href="{% url 'social:begin' backend="facebook" %}" title="Login via Google+">
+            <img src="/static/template/img/cab/social_big/fb.png" alt="Login via Facebook" />
+            </a>
+        </div>
+        <div class="btns">
+            <a href="{% url 'user:register' %}" class="btn reg">Registration</a>
+            <!-- <button class="btn demo">Demo</button> -->
+        </div>
+    </div>
+</div>
+<div id="maincontent">
+    <h2>Graphic example</h2>
+
+    <img src="/static/template/img/demo/graph.png" alt=""/>
+</div>
+<div id="wecando">
+    <h2>What we can do</h2>
+
+    <div class="items">
+        <div class="item">
+            <img src="/static/template/img/Glasses.png" alt=""/><br/>
+            Overview
+            of price
+            changes
+        </div>
+        <div class="item">
+            <img src="/static/template/img/Folder.png" alt=""/><br/>
+            Alerts
+            of price
+            changes
+        </div>
+        <div class="item">
+            <img src="/static/template/img/Servers.png" alt=""/><br/>
+            Storing
+            the
+            history
+        </div>
+    </div>
+</div>
+<div id="reviews">
+    <h2>Reviews</h2>
+
+    <div class="reviews">
+        <div class="review">
+            <img src="/static/template/img/ava/ava1.jpg" alt="" />
+            <span class="name">Edward Page</span>
+            <span class="pos">Store manager</span>
+
+            <div>
+                <div class="dq1"></div>
+                This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
+                sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed
+                odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio
+                tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti
+                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna
+                eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum
+                fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl
+                quis neque. Suspendisse in orci enim.
+            </div>
+        </div>
+        <div class="review">
+            <img src="/static/template/img/ava/ava2.jpg" alt=""/>
+
+            <span class="name">Elizabeth Davis</span>
+            <span class="pos">Store manager</span>
+
+            <div>
+                This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
+                sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed
+                odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio
+                tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti
+                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna
+                eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum
+                fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl
+                quis neque. Suspendisse in orci enim.
+            </div>
+        </div>
+        <div class="review">
+            <img src="/static/template/img/ava/ava3.jpg" alt=""/>
+
+            <span class="name">William Goodman</span>
+            <span class="pos">Store manager</span>
+
+            <div>
+                This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean
+                sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed
+                odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio
+                tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti
+                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna
+                eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum
+                fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl
+                quis neque. Suspendisse in orci enim.
+                <div class="dq2"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div style="background: #fff!important;">
+<div id="footer">
+    <img src="/static/template/img/logos/1.png" alt=""/>
+    <img src="/static/template/img/logos/2.png" alt=""/>
+    <img src="/static/template/img/logos/3.png" alt=""/>
+    <img src="/static/template/img/logos/4.png" alt=""/>
+    <img src="/static/template/img/logos/5.png" alt=""/>
+    <img src="/static/template/img/logos/6.png" alt=""/>
+    <img src="/static/template/img/logos/7.png" alt=""/>
+</div>
+{% include "main/footer.html" %}
+</div>
+{% endblock %}

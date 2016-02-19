@@ -1,0 +1,8 @@
+You are new user!
+You'll be redirect in a few seconds. If it's not you can follow <a href="{% url 'user:userprofile' %}">direct link</a>
+
+<script type="text/javascript">
+    setTimeout(function(){
+        window.location.href = "{% url 'user:userprofile' %}";
+    }, 5000);
+</script>

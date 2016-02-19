@@ -1,0 +1,11 @@
+<ul class="groups">
+    {% for grp in groups %}
+    <li>
+        {# We need to use "If tags"  here  to get all elements wich contain group_name for current group #}
+        <a href="{% url 'user:itemgroup' grp.id %}" {% if group.id == grp.id %}id="active-group" gid="{{ grp.id }}"{% endif %}>
+            {% if group.id == grp.id %}<span class="current-groupname-text">{% endif %}{{ grp.group_name }}{% if group.id == grp.id %}</span>{% endif %}
+            <span class="badge">{{ grp.itemscount }}</span>
+        </a>
+    </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,38 @@
+{% extends 'userprofile/base.html' %}
+{% load i18n %}
+
+
+{% block user_content %}
+{% if messages %} {# Вывод флэш-сообщений #}
+    <ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+    <ul class="errorlist">
+    {% for e in  errors %}
+       <li>{{ e }}</li>
+    {% endfor %}
+     </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" class="btn" value="{% trans "Login" %}">
+    </form>
+<a href="{% url 'social:begin'  backend="vk-oauth2"%}" title="Login via VK">
+<img src="/static/template/img/cab/social_big/vk.png" alt="Login via VK"/>
+</a>
+<a href="{% url 'social:begin' backend="google-oauth2" %}" title="Login via Google+">
+<img src="/static/template/img/cab/social_big/g+.png" alt="Login via Google+" />
+</a>
+<a href="{% url 'social:begin' backend="facebook" %}" title="Login via Google+">
+<img src="/static/template/img/cab/social_big/fb.png" alt="Login via Facebook" />
+</a>
+<br />
+
+    <a href='{% url "user:register" %}'>{% trans "Register" %}</a>
+    <a href='{% url "user:change_password" %}'>{% trans "Restore password" %}</a>
+{% endblock %}

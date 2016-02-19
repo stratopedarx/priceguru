@@ -1,0 +1,59 @@
+<div id="chart_div_{{group.id}}">ty</div>
+<script type="text/javascript">
+$(function () {
+    {% for group_name, o_items in data.items %}
+        $('#chart_div_{{group.id}}').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: "{{group_name}}"
+            },
+            subtitle: {
+                text: 'prices for {{group_name}}'
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Date'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Price'
+                },
+                min: 0
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e. %b}: {point.y:.2f} {{currency}}'
+            },
+
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: true
+                    }
+                }
+            },
+
+            series: [
+            {% for o_item_name, prices in o_items.items %}
+            {
+                name: '{{o_item_name.0}} ({{o_item_name.1}})',
+                data: [
+                    {% for price in prices %}
+                        [Date.parse('{{price.0|date:"Y-m-d\TH:i:s"}}'), {{price.1}}],
+                    {% endfor %}
+                ]
+            },
+            {% endfor %}
+            ]
+        });
+    {% endfor %}
+});
+</script>

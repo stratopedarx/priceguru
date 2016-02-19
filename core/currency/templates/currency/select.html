@@ -1,0 +1,8 @@
+<form method="POST" action="{% url 'currency:select' %}?next={{next}}">
+    {% csrf_token %}
+    <select name="currency" class="input-mini" onchange="this.form.submit()">
+        {% for ccy in currencies_list %}
+            <option value="{{ccy}}" {% if ccy == currency %}selected{%endif%}>{{ccy}}</option>
+        {% endfor %}
+    </select>
+</form>

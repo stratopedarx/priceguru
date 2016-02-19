@@ -1,0 +1,30 @@
+<div id="add-group-popup" class="popup change-photo nodisplay">
+    <h4>{% if is_show_itemgroup %}Edit <span class="current-groupname-text">{{ group.group_name }}</span>{% else %}New Group{% endif %}</h4>
+    <a href="#" class="closebut" id="close-add-group"></a>
+    <div class="in">
+        <form>
+            {% csrf_token %}
+        <label for="">GROUP NAME</label>
+        <input type="text" class="form-control" {% if is_show_itemgroup %}value="{{ group.group_name }}"{% endif %} name="group_name" id="group_name" placeholder="Receiver for example"/>
+        <br/>
+        <label for="">COLOR PALETTE</label>
+        <div class="colors">
+            <a href="#" class="square" style="background: #1abc9c; border-color:#1abc9c; background-position: 50% 50%;"></a>
+            <a href="#" class="square" style="background: #2ecc71; border-color:#2ecc71"></a>
+            <a href="#" class="square glyphicon glyphicon-remove-sign" style="background: #3498db; border-color:#3498db"></a>
+            <a href="#" class="square" style="background: #9b59b6; border-color:#9b59b6"></a>
+            <a href="#" class="square" style="background: #f1c40f; border-color:#f1c40f"></a>
+            <a href="#" class="square" style="background: #e67e22; border-color:#e67e22"></a>
+            <a href="#" class="square" style="background: #e74c3c; border-color:#e74c3c"></a>
+            <a href="#" class="square" style="background: #8a99a3; border-color:#8a99a3"></a>
+            <a href="#" class="square glyphicon glyphicon-plus-sign" style="background: #4bb547; border-color:#4bb547"></a>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <a href="#" id="{% if is_show_itemgroup %}edit{% else %}add{% endif %}-group-submit" class="btn btn-success pull-right">
+            {% if is_show_itemgroup %}Edit Group{% else %}Create Group{% endif %}
+        </a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+{% extends "userprofile/base.html" %}
+{% load i18n %}
+{% load currency %}
+{% load i18n charts %}
+{% block extrajs %}
+{{ block.super }}
+    <!--[if lte IE 8]>
+    <script src="/static/template/js/ExplorerCanvas/excanvas.js"></script>
+
+    <![endif]-->
+    <script src="/static/template/js/Chart.js/Chart.js"></script>
+    <script src="/static/template/js/popups.js"></script>
+    <script src="/static/template/js/groups.js"></script>
+{% endblock %}
+
+
+
+{% block popups %}
+    {% if is_show_itemgroup %}
+    {% include "userprofile/itemgroup_delete.html" %}
+    {% include "userprofile/useritem_form.html" %}
+    {% include "userprofile/useritem_list.html" %}
+    {% endif %}
+    {% include "userprofile/itemgroup_form.html" %}
+{% endblock %}
+
+{% block left %}
+{% trans "Group" %}
+{% include "userprofile/groups_menu.html" %}
+{% endblock %}
+{% block user_content %}
+{% block group_panel %}
+{% if messages %} {# Вывод флэш-сообщений #}
+    <ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+<a href="#" id="add-group-btn" class="btn btn-success pull-right">{% trans "Add Group" %}</a>
+<div style="clear:right; padding: 3px;"></div>
+{% for group in groups %}
+{% include "userprofile/group.html" %}
+{% endfor %}
+{% endblock %}
+{% endblock %}
+
+

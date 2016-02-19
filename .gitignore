@@ -1,0 +1,14 @@
+*.py[co]
+.idea/*
+.env/*
+logs/*.log
+sceleton/local_settings.py
+*.db
+_media/static/
+_media/media/
+tmp/
+conf/
+*.json
+*.pid
+*.sock
+celerybeat-schedule

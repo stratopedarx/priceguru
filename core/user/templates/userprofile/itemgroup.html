@@ -1,0 +1,9 @@
+{% extends "userprofile/home.html" %}
+{% block extrajs %}
+{{ block.super }}
+    <script src="/static/template/js/items.js"></script>
+{% endblock %}
+
+{% block group_panel %}
+{% include "userprofile/group.html" %}
+{% endblock %}

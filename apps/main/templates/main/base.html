@@ -1,0 +1,32 @@
+{% load currency %}
+{% load loginza_widget %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="UTF-8">
+    <title>PriceGuru</title>
+    <script src="/static/template/js/urls.js"></script>
+    <script src="/static/template/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/template/js/ajaxfix.js"></script>
+    <!--<script src="/static/template/js/bootstrap.min.js"></script>-->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/template/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/template/bootstrap/css/bootstrap-theme.min.css">
+    <!--<script src="/static/template/bootstrap/js/bootstrap.min.js"></script>-->
+
+    <!-- Charts -->
+    <script src="/static/template/js/highcharts-custom.js"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="/static/template/css/style.css"/>
+    {% block extrastyle %}
+    {% endblock %}
+    {% block extrajs %}
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>

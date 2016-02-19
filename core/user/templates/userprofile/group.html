@@ -1,0 +1,125 @@
+{% load i18n %}
+<h3>
+     {% trans "Group" %}: <a href="{% url 'user:itemgroup' group.id %}"><span class="current-groupname-text">{{ group.group_name }}</span></a>
+ </h3>
+            <div class="bl products">
+                <div class="cont">
+                    {% if is_show_itemgroup %}
+                    <div class="btn-toolbar" style="height: 40px;">
+                        <a href="." class="btn btn-success">Refresh price</a>
+                        <a href="#" class="btn btn-success" id="add-useritem-btn">Add new product</a>
+                        <a href="#" class="btn btn-success" id="edit-group-btn">Edit group</a>
+
+                        <a href="#" class="btn btn-default btn-xs" style="color:green"><span class="glyphicon glyphicon-chevron-down"></span></a>
+                        <a href="#" class="btn btn-default btn-xs" style="color:green"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                        <a href="#" class="btn btn-default btn-xs" style="color:green" id="edit-useritem-btn"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="#" class="btn btn-default btn-xs" style="color:green" id="delete-useritem-btn"><span class="glyphicon glyphicon-remove"></span></a>
+
+                        <a href="#" class="btn btn-default pull-right">&mdash;</a>
+                        <a href="#" id="delete-group-btn" class="btn btn-success pull-right">Delete group</a>
+                    </div>
+                    {% endif %}
+                    <table class="table-list">
+                        <thead>
+                        <td><span class="glyphicon glyphicon-eye-open"></span></td>
+                        <td>Product name</td>
+                        <td>Link</td>
+                        <td>Cost</td>
+                        <td>Last Modified</td>
+                        <td>Shop</td>
+                        </thead>
+                        <tbody>
+
+                        {% for item in group.items %}
+                          <tr id="item-{{ item.id }}">
+                            <td><input type="checkbox" pid="{{ item.id }}" class="checked_items" value="{{ item.id }}" /></td>
+                            <td>{{ item.custom_name }}</td>
+                            <td>
+                                <a href="{{ item.url }}">{{ item.url }}</a>
+                            </td>
+                            <td style="vertical-align:middle">
+                                {{ item.current_price_converted|floatformat:2 }} {{ currency }}
+                            </td>
+                              <td style="vertical-align:middle">
+                                  {{item.price_created_date}}
+                              </td>
+                            <td>{{ item.partner_name }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr id="no-items-label">
+                            <td colspan="5">
+                                <h3 class="muted" align="center">{% trans "Please add item" %}</h3>
+                            </td>
+                        </tr>
+                       {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="bl">
+                <div class="cont">
+                    <a href="#" class="btn btn-default active">week</a>
+                    <a href="#" class="btn btn-default">month</a>
+                    <a href="#" class="btn btn-default">year</a>
+                    <a href="#" class="btn btn-default col-lg-offset-1 disabled">&lt;</a>
+                    <a href="#" class="btn btn-default">&gt;</a>
+                    <a href="#" class="btn btn-default pull-right">&mdash;</a>
+                    <br/>
+                    <br/>
+
+                    <div id="canvas-holder2" style="position: relative;">
+                        <div id="chartjs-tooltip_{{ group.id }}"></div>
+
+                        <canvas id="chart_{{ group.id }}" width="860" height="365"/>
+                    </div>
+
+
+                       <script type="text/javascript">
+                        var tooltipEl = $('#chartjs-tooltip_{{ group.id }}');
+
+                        var lineChartData = {
+                            labels: ["12 Aug", "13 Aug", "14 Aug", "15 Aug", "16 Aug", "17 Aug", "18 Aug", "19 Aug"],
+                            datasets: [{
+                                label: "My First dataset",
+                                fillColor: "rgba(0,0,0,0)",
+                                strokeColor: "#4bb547",
+                                pointColor: "#4bb547",
+                                data: [82000, 82000, 82000, 82000, 82000, 82000, 82000, 84000]
+                            }, {
+                                label: "My Second dataset",
+                                fillColor: "rgba(0,0,0,0)",
+                                strokeColor: "#f1c40f",
+                                pointColor: "#f1c40f",
+                                data: [69000, 69000, 67000, 69000, 69000, 68000, 69000, 69000]
+                            }, {
+                                label: "My Third dataset",
+                                fillColor: "rgba(0,0,0,0)",
+                                strokeColor: "#9b59b6",
+                                pointColor: "#9b59b6",
+                                data: [55000, 55000, 54000, 55500, 55000, 60000, 57000, 58000]
+                            }, {
+                                label: "My four dataset",
+                                fillColor: "rgba(0,0,0,0)",
+                                strokeColor: "#3498db",
+                                pointColor: "#3498db",
+                                data: [53000, 53000, 55000, 55700, 54800, 59000, 57500, 58700]
+                            }]
+                        };
+
+                        $(document).ready(function () {
+                            var ctx = document.getElementById("chart_{{ group.id }}").getContext("2d");
+                            var chart = new Chart(ctx).Line(lineChartData, {
+                                bezierCurve: false,//Скруглять
+                                showTooltips: true,
+                                pointDot: true,
+                                responsive: true
+                            });
+                        });
+                    </script>
+                </div>
+
+            </div>

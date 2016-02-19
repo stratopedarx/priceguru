@@ -1,0 +1,16 @@
+<html>
+<body>
+Hello <strong>{{username}}</strong>
+{% if change_prices %}
+    <ul>
+    {% for item, prices in change_prices.items %}
+        <li>The price your item <strong>{{ item }} </strong> was changed!</li>
+        <li>The base price: from <strong> {{ prices.0 }} </strong> to <strong> {{ prices.1 }} </strong></li>
+        <li>The discount price: from <strong> {{ prices.2 }} </strong> to <strong> {{ prices.3 }} </strong></li>
+        <li></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>The prices have not changed.</p>
+{% endif %}
+</body>

@@ -1,0 +1,15 @@
+<div id="delete-group-popup" class="popup change-photo nodisplay">
+    <h4>Delete Group</h4>
+    <a href="#" class="closebut" id="close-delete-group"></a>
+    <div class="in">
+        <h2><span class="current-groupname-text">{{ group.group_name }}</span></h2>
+        You are sure you want to delete this group? The whole history of the update will be lost forever.
+        <br/><br/><br/>
+        <center>
+            <form action="{% url 'user:itemgroup_delete'  group.id %}" method="post">{% csrf_token %}
+            <input type="hidden" name="post" value="yes" />
+            <button id="submit-group-delete" type="submit" class="btn btn-default btn-lg">yes</button>&nbsp;&nbsp;<a href="#" id="no-delete-group-btn" class="btn btn-success btn-lg">no</a>
+            </form>
+        </center>
+    </div>
+</div>

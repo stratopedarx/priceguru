@@ -1,0 +1,21 @@
+{% extends 'userprofile/base.html' %}
+{% load i18n %}
+
+
+{% block user_content %}
+    <ul class="errorlist">
+    {% for e in  errors %}
+       <li>{{ e }}</li>
+    {% endfor %}
+
+     </ul>
+{% for e in form.errors %}
+        {{ e }}
+        {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn" value="{% trans "Register" %}">
+    </form>
+
+{% endblock %}

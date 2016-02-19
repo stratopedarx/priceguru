@@ -1,0 +1,19 @@
+<div id="useritem-popup" class="popup change-photo nodisplay">
+    <h4>Add Item</h4>
+    <a href="#" class="closebut" id="close-useritem"></a>
+    <div class="in">
+        <div id="message">
+        </div>
+        <form id="add-item-form">
+            {% csrf_token %}
+        <label for="">URL</label>
+        <input type="text" class="form-control" name="url" id="id_url" placeholder="http://example.com/goods/good1.html for example"/>
+            <input type="hidden" name="group_id" id="group_id" value="{{ group.id }}" />
+        <br/>
+        <br/>
+        <a href="#" id="add-item-submit" class="btn btn-success pull-right">
+           Add item
+        </a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+django==1.8.1
+Pillow
+psycopg2
+django-debug-toolbar
+django-mptt
+django-suit
+django-suit-ckeditor
+lxml
+cssselect
+grab
+pycurl
+amqplib
+django-celery
+redis
+requests
+python-social-auth
+git+git://github.com/vgarvardt/django-loginza.git@bf791f2

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+
+<style>
+    li.SUCCESS {
+        color: green;
+    }
+    li.FAILURE {
+        color: red;
+    }
+
+</style>
+
+
+
+{% block content %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        setInterval(function(){
+            $("#tasks li").each(function(){
+                var item = $(this)
+                if (!!item.attr("class")){
+                    return;
+                }
+
+
+                $.ajax({
+                    url: '/api/is_ready/' + item.text(),
+                    success: function(json){
+                        if (json.ready){
+                            if (json.data.success){
+                                item.addClass("SUCCESS");
+                                item.html(json.data.result.fields.title);
+                            }
+                            else{
+                                item.addClass("FAILURE");
+                                item.html(json.data.error.name);
+                            }
+                        }
+                        console.log(json)
+                    }
+                })
+            });
+        }, 5000);
+    });
+
+
+    $(document).on("submit", ".ajaxForm", function(){
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function(html){
+                jQuery("<li/>",{
+                    text:html,
+                }).appendTo("#tasks");
+
+            }
+        });
+        return false;
+    });
+
+</script>
+<form method="post" action="{% url 'api:add_url' %}" class="ajaxForm" onsubmit="false;">
+    {% csrf_token %}
+    {{ add_url_form.as_p }}
+    <input type="submit">
+</form>
+
+
+<ul id="tasks"></ul>
+
+
+{% endblock content %}
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div id="list-useritem-popup" class="popup change-photo nodisplay">
+    <h4><span class="list-action-text" style="text-transform: capitalize;"></span> Item</h4>
+    <a href="#" class="closebut" id="close-list-useritem"></a>
+    <div class="in">
+        <h3>You are sure you want to <span class="list-action-text"></span> this items?</h3>
+        <br/><br/><br/>
+        <center>
+            <form>{% csrf_token %}
+                <input type="hidden" value="" id="useritems-list-action" />
+                <table id="list-to">
+
+                </table>
+                <a id="submit-item-list"  class="btn btn-default btn-lg">yes</a>&nbsp;&nbsp;<a href="#" id="no-list-useritems-btn" class="btn btn-success btn-lg">no</a>
+            </form>
+        </center>
+    </div>
+</div>
